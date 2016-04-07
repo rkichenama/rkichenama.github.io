@@ -1,0 +1,18 @@
+@import 'variables';
+
+body {
+  background-color: $Cloudy;
+  font-size: $font-size-medium;
+  color: $Black;
+}
+
+#app {
+  @media (min-width: 768px) {
+    margin-top: 16px;
+  }
+}
+
+.panel {
+  border-radius: 0;
+  padding: 1rem;
+}
