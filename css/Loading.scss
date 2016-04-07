@@ -1,0 +1,120 @@
+@import "variables";
+@import "mixins";
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+.loading-center.loading-center {
+  @extend %flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  height: 100%;
+  min-height: (96px * 2);
+}
+.loading-box.loading-box {
+  background-color: $White;
+  @extend %flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(flex-end);
+  height: 223px;
+  width: 232px;
+  @include box-shadow(0 0 4px $Medium-Grey);
+}
+.loading {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  z-index: 9000;
+  overflow: hidden;
+
+  .gear {
+    position: absolute;
+    z-index: -10;
+    width: 40px;
+    height: 40px;
+    @include animation('spin 2s linear infinite');
+  }
+
+  .two {
+    left: 40px;
+    width: 80px;
+    height: 80px;
+    @include animation('spin-reverse 2s linear infinite');
+  }
+
+  .three {
+    top: 45px;
+    left: -10px;
+    width: 60px;
+    height: 60px;
+  }
+
+  #primary   { fill: $Accent; }
+  #secondary   { fill: $Highlight; }
+  #tertiary { fill: $Important; }
+
+  .circle {
+    position: absolute;
+    top: -19px;
+    left: -19px;
+  }
+
+  .inner-circle {
+    position: absolute;
+    border-radius: 50%;
+    @include box-shadow(inset 0 0 10px 2px $Medium-Grey);
+    width: 100px;
+    height: 100px;
+  }
+
+  &-text {
+    height: 55px;
+    margin-top: 34px;
+    color: $Warm-Grey;
+    font-size: 18px;
+    font-weight: $font-weight-light;
+  }
+}
+
+
+@include keyframes(spin) {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@include keyframes(spin-reverse) {
+  100% {
+    transform: rotate(-360deg);
+  }
+}

@@ -1,0 +1,24 @@
+@import "variables";
+
+.hackerNews {
+  header {
+    text-align: center;
+    font-size: $font-size-large;
+  }
+  footer {
+    text-align: center;
+    font-size: $font-size-small;
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+
+      & + li {
+        margin-top: .75em;
+      }
+    }
+  }
+}

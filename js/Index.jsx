@@ -1,8 +1,9 @@
 const
   React = require('react')
   ,{Navigation} = require('react-router')
+  ,HackerNews = require('./HackerNews')
+  ,Blank = require('./Blank')
 ;
-
 
 class Index extends React.Component {
   componentDidMount () {
@@ -17,11 +18,15 @@ class Index extends React.Component {
             <a href="mailto:rkichenama@gmail.com">Richard Kichenama</a>
           </div>
         </div>
-        <div className={'col-md-4'}><div className={'panel'}>4x1</div></div>
-        <div className={'col-md-4'}><div className={'panel'}>4x1</div></div>
-        <div className={'col-md-4'}><div className={'panel'}>4x1</div></div>
-        <div className={'col-md-4'}><div className={'panel'}>4x1</div></div>
-        <div className={'col-md-4'}><div className={'panel'}>4x1</div></div>
+        <div className={'col-md-4'}><div className={'panel'}><Blank /></div></div>
+        <div className={'col-md-4'}><div className={'panel'}><Blank /></div></div>
+        <div className={'col-md-4'}><div className={'panel'}><Blank /></div></div>
+        <div className={'col-md-4'}><div className={'panel'}><Blank /></div></div>
+        <div className={'col-md-4'}>
+          <div className={'panel'}>
+            <HackerNews />
+          </div>
+        </div>
         { this.props.children }
       </div>
     );

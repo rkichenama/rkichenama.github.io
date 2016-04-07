@@ -12,6 +12,7 @@ const App = () => (
     <Route path='/' component={Layout}>
       <IndexRoute component={Index} />
       <Route path="intro" component={Intro} />
+      <Route path="*" component={Index} />
     </Route>
   </Router>
 );
