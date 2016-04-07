@@ -25137,7 +25137,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #e5e8ea;\n  font-size: 16px;\n  color: #000000; }\n\n@media (min-width: 768px) {\n  #app {\n    margin-top: 16px; } }\n\n.panel {\n  border-radius: 0;\n  padding: 1rem; }\n  .panel:before, .panel:after {\n    display: table;\n    content: ''; }\n  .panel:after {\n    clear: both; }\n\n.item-title a, .item-title a:hover, .item-title a:visited, .item-title a:active {\n  color: #7A95FF;\n  font-weight: 300; }\n\n.item-score {\n  text-align: center; }\n\n.item-date {\n  text-align: right; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #e5e8ea;\n  font-size: 16px;\n  color: #000000; }\n\n@media (min-width: 768px) {\n  #app {\n    margin-top: 16px; } }\n\na, a:hover, a:visited, a:active {\n  color: #7A95FF;\n  font-weight: 300; }\n\n.panel {\n  border-radius: 0;\n  padding: 1rem; }\n  .panel:before, .panel:after {\n    display: table;\n    content: ''; }\n  .panel:after {\n    clear: both; }\n\n.item-title, .item-score {\n  text-align: center; }\n\n.item-date {\n  text-align: right; }\n", ""]);
 
 	// exports
 

@@ -12,6 +12,11 @@ body {
   }
 }
 
+a, a:hover, a:visited, a:active {
+  color: $Accent;
+  font-weight: $font-weight-light;
+}
+
 .panel {
   border-radius: 0;
   padding: 1rem;
@@ -27,12 +32,7 @@ body {
 }
 
 .item {
-  &-title {
-    a, a:hover, a:visited, a:active {
-      color: $Accent;
-      font-weight: $font-weight-light;
-    }
-  }
+  &-title,
   &-score {
     text-align: center;
   }
