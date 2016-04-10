@@ -48,7 +48,7 @@
   @include justify-content(flex-end);
   height: 223px;
   width: 232px;
-  @include box-shadow(0 0 4px $Medium-Grey);
+  // @include box-shadow(0 0 4px $Medium-Grey);
 }
 .loading {
   position: relative;

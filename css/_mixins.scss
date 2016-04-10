@@ -428,3 +428,18 @@
      -moz-box-shadow: $params;
           box-shadow: $params;
 }
+
+
+// -----------
+%bootstrap-cols-with-flexbox {
+  float: none;
+}
+@mixin override-bootstrap-cols-with-flexbox() {
+  @each $sz in ('xs', 'sm', 'md', 'lg', 'xl') {
+    @for $c from 1 through 12 {
+      .col-#{$sz}-#{$c} {
+        @extend %bootstrap-cols-with-flexbox;
+      }
+    }
+  }
+}

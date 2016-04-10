@@ -25,11 +25,8 @@ const Loading = (props) => (
         </div>
         <div className="inner-circle" />
         <svg className="circle">
-          <filter id="blur">
-            <fegaussianblur in="SourceGraphic" stddeviation="13"></fegaussianblur>
-          </filter>
           <circle cx="70" cy="70" r="66" fill="transparent" stroke="white"
-            strokeWidth="40" filter="url(#blur)"></circle>
+            strokeWidth="40"></circle>
         </svg>
       </div>
       <div className="loading-text">
