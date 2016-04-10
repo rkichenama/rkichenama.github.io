@@ -44968,7 +44968,7 @@
 	    value: function _specialList(to, i, base) {
 	      var arr = prep([], i, this);
 	      i = (i + 1) % base;
-	      arr.concat(this._rollingList(to, i, base));
+	      arr = arr.concat(this._rollingList(to, i, base));
 	      // add blank placeholder
 	      arr.push(this.refs.spare);
 	      return arr;
@@ -45072,7 +45072,7 @@
 
 
 	// module
-	exports.push([module.id, ".figure {\n  display: inline-block;\n  position: relative;\n  font-size: 6rem;\n  color: #7A95FF;\n  background-color: #e5e8ea; }\n  .figure + .figure {\n    margin-left: 8px; }\n  .figure:nth-last-child(3n + 1):not(:last-child) {\n    margin-right: .2em; }\n    .figure:nth-last-child(3n + 1):not(:last-child):after {\n      position: absolute;\n      content: ',';\n      font-size: inherit;\n      color: inherit;\n      left: 100%;\n      top: 0;\n      margin-left: 4px;\n      margin-top: -0.2em; }\n  .figure-window {\n    position: relative;\n    font-size: inherit;\n    width: .6em;\n    height: 1em;\n    line-height: 1em;\n    overflow: hidden; }\n    .figure-window figure {\n      margin: 0;\n      color: inherit;\n      position: absolute;\n      opacity: 0;\n      display: block;\n      width: 100%; }\n      .figure-window figure.current {\n        opacity: 1; }\n      .figure-window figure mark {\n        background-color: transparent;\n        color: inherit;\n        text-align: center;\n        display: block;\n        padding: 0;\n        box-sizing: border-box; }\n", ""]);
+	exports.push([module.id, ".figure {\n  display: inline-block;\n  position: relative;\n  font-size: 6rem;\n  color: #7A95FF;\n  background-color: #e5e8ea; }\n  .figure + .figure {\n    margin-left: 6px; }\n  .figure:nth-last-child(3n + 1):not(:last-child) {\n    margin-right: .2em; }\n    .figure:nth-last-child(3n + 1):not(:last-child):after {\n      position: absolute;\n      content: ',';\n      font-size: inherit;\n      color: inherit;\n      left: 100%;\n      top: 0;\n      margin-left: 3px;\n      margin-top: -0.2em; }\n  .figure-window {\n    position: relative;\n    font-size: inherit;\n    width: .8em;\n    height: 1em;\n    line-height: 1em;\n    overflow: hidden; }\n    .figure-window figure {\n      margin: 0;\n      color: inherit;\n      position: absolute;\n      opacity: 0;\n      display: block;\n      width: 100%; }\n      .figure-window figure.current {\n        opacity: 1; }\n      .figure-window figure mark {\n        background-color: transparent;\n        color: inherit;\n        text-align: center;\n        display: block;\n        padding: 0;\n        box-sizing: border-box; }\n", ""]);
 
 	// exports
 

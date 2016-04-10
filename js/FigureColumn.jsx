@@ -119,7 +119,7 @@ class FigureColumn extends React.Component {
   _specialList (to, i, base) {
     let arr = prep([], i, this);
     i = ((i + 1) % base);
-    arr.concat(this._rollingList(to, i, base));
+    arr = arr.concat(this._rollingList(to, i, base));
     // add blank placeholder
     arr.push(this.refs.spare);
     return arr;
