@@ -1,5 +1,5 @@
 const
-  Rx = require('rxjs-es/Rx')
+  {Subject} = require('rxjs-es/Rx')
 ;
 
 const RequestPromise = (url) => {
@@ -20,7 +20,7 @@ const RequestPromise = (url) => {
 // https://hacker-news.firebaseio.com/v0/topstories.json
 // https://hacker-news.firebaseio.com/v0/item/11449029.json
 const HackerNews = () => {
-  let subject = new Rx.Subject();
+  let subject = new Subject();
   setInterval(() => {
     RequestPromise('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then((jsonOrError) => {

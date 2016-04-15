@@ -1,6 +1,7 @@
 const
   React = require('react')
   ,ReactDOM = require('react-dom')
+  ,{Observable} = require('rxjs-es/Rx')
 ;
 
 require('../css/Figure.scss');
@@ -72,7 +73,15 @@ class FigureColumn extends React.Component {
       this.setState({value: value});
     }
   }
-  componentDidMount () {}
+  componentDidMount () {
+    Observable.fromEvent(window, 'focus')
+      .merge(Observable.fromEvent(window, 'blur'))
+      .map((evt) => /focus/i.test(evt.type))
+      .distinctUntilChanged()
+      .subscribe((isFocused) => {
+        this.setState({shouldAnimate: isFocused});
+      });
+  }
   componentWillUpdate (nextProps) {
     if (this.props !== nextProps) {
       // this.setState({

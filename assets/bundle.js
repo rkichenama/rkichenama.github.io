@@ -25817,10 +25817,6 @@
 	  return React.createElement('div', _extends({ className: 'click-bait' }, props));
 	};
 
-	var oy = {
-	  v: 300
-	};
-
 	var Index = function (_React$Component) {
 	  _inherits(Index, _React$Component);
 
@@ -25830,7 +25826,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Index).call(this));
 
 	    _this._handleClick = _this._handleClick.bind(_this);
-	    _this.state = { v: 0 };
+	    _this.state = { v: 0, w: 0 };
 	    return _this;
 	  }
 
@@ -25842,7 +25838,10 @@
 	      // console.log();
 	      // setTimeout(() => this.context.router.push('intro'),  3000);
 	      setInterval(function () {
-	        return _this2.setState({ v: new Date().getTime() % 1e7 });
+	        return _this2.setState({
+	          v: new Date().getTime() % 1e7,
+	          w: (_this2.state.w + 11) % 1e7
+	        });
 	      }, 1250);
 	    }
 	  }, {
@@ -25870,7 +25869,8 @@
 	            'div',
 	            { className: 'panel' },
 	            React.createElement(ClickBait, null),
-	            React.createElement(Figures, { value: this.state.v, base: 16 })
+	            React.createElement(Figures, { value: this.state.v, base: 16 }),
+	            React.createElement(Figures, { value: this.state.w, base: 16 })
 	          )
 	        ),
 	        React.createElement(
@@ -26219,7 +26219,10 @@
 
 	'use strict';
 
-	var Rx = __webpack_require__(236);
+	var _require = __webpack_require__(236);
+
+	var Subject = _require.Subject;
+
 
 	var RequestPromise = function RequestPromise(url) {
 	  return new Promise(function (res, rej) {
@@ -26244,7 +26247,7 @@
 	// https://hacker-news.firebaseio.com/v0/topstories.json
 	// https://hacker-news.firebaseio.com/v0/item/11449029.json
 	var HackerNews = function HackerNews() {
-	  var subject = new Rx.Subject();
+	  var subject = new Subject();
 	  setInterval(function () {
 	    RequestPromise('https://hacker-news.firebaseio.com/v0/topstories.json').then(function (jsonOrError) {
 	      if (typeof jsonOrError !== 'string') {
@@ -44797,8 +44800,13 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var React = __webpack_require__(1),
-	    ReactDOM = __webpack_require__(32);
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+
+	var _require = __webpack_require__(236);
+
+	var Observable = _require.Observable;
+
 
 	__webpack_require__(515);
 
@@ -44906,7 +44914,16 @@
 	    }
 	  }, {
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {}
+	    value: function componentDidMount() {
+	      var _this3 = this;
+
+	      Observable.fromEvent(window, 'focus').merge(Observable.fromEvent(window, 'blur')).map(function (evt) {
+	        return (/focus/i.test(evt.type)
+	        );
+	      }).distinctUntilChanged().subscribe(function (isFocused) {
+	        _this3.setState({ shouldAnimate: isFocused });
+	      });
+	    }
 	  }, {
 	    key: 'componentWillUpdate',
 	    value: function componentWillUpdate(nextProps) {
@@ -44920,14 +44937,14 @@
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate(prevProps) {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      if (this.props !== prevProps) {
 	        (function () {
 	          // prep Animation
 	          var arr = [];
-	          var value = _this3.state.value;
-	          var _props3 = _this3.props;
+	          var value = _this4.state.value;
+	          var _props3 = _this4.props;
 	          var next = _props3.value;
 	          var _props3$base = _props3.base;
 	          var base = _props3$base === undefined ? 10 : _props3$base;
@@ -44935,15 +44952,15 @@
 
 	          var isSpecial = false;
 	          if (isLastColumn && value === next) {
-	            arr = _this3._specialList(next, value, base);
+	            arr = _this4._specialList(next, value, base);
 	            isSpecial = true;
 	          } else {
-	            arr = _this3._rollingList(next, value, base);
+	            arr = _this4._rollingList(next, value, base);
 	          }
 
-	          var figure = _this3;
-	          _this3.setState({
-	            animationFn: animateFn(arr, _this3.frames, isSpecial),
+	          var figure = _this4;
+	          _this4.setState({
+	            animationFn: animateFn(arr, _this4.frames, isSpecial),
 	            interval: requestAnimationFrame(function () {
 	              if (arr.length) {
 	                figure._doAnimation(0);

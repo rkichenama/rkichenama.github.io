@@ -12,19 +12,20 @@ const ClickBait = (props) => (
   <div className={'click-bait'} {...props}></div>
 );
 
-const oy = {
-  v: 300
-};
 class Index extends React.Component {
   constructor () {
     super();
     this._handleClick = this._handleClick.bind(this);
-    this.state = {v: 0};
+    this.state = {v: 0, w: 0};
   }
   componentDidMount () {
     // console.log();
     // setTimeout(() => this.context.router.push('intro'),  3000);
-    setInterval(() => this.setState({v: (new Date()).getTime() % 1e7}), 1250);
+    setInterval(() => this.setState({
+      v: (new Date()).getTime() % 1e7,
+      w: (this.state.w + 11) % 1e7,
+    }), 1250);
+
   }
   _handleClick (evt) {
     if (/click-bait/i.test(evt.target.className)) {
@@ -41,6 +42,7 @@ class Index extends React.Component {
           <div className={'panel'}>
             <ClickBait />
             <Figures value={this.state.v} base={16} />
+            <Figures value={this.state.w} base={16} />
           </div>
         </div>
         <div className={'col-md-4'}>
