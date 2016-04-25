@@ -1,0 +1,12 @@
+.bio {
+  @extend %decorative;
+  .title {
+    font-size: $large-font-size;
+    margin-bottom: 8px;
+  }
+  .statement {
+    line-height: $normal-font-size;
+    font-size: $small-font-size;
+    color: $color-light;
+  }
+}

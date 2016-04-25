@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Kichenama - CV</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link href="./css/screen.css" rel="stylesheet" media="screen,print" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.compat.min.js"></script>
+  <script src="./js/react-with-addons.min.js"></script>
+  <script src="./js/react-dom.min.js"></script>
+  <script src="./js/alfred.min.js"></script>
+  <script src="./js/script.js"></script>
+</head>
+
+<body>
+  <main class="page">
+    <row class="heading">
+      <column class="biography">bio</column>
+      <column class="avatar"></column>
+      <column class="contacts">contact</column>
+    </row>
+    <row class="content">
+      <column>
+        <section class="xp">experience</section>
+        <section class="edu">education</section>
+      </column>
+      <column>
+        <section class="competencies">skills</section>
+        <section class="awards">achievements</section>
+        <section class="hobbies">interests</section>
+      </column>
+    </row>
+  </main>
+  <script>
+    Alfred.reset();
+    Alfred.fetch('./data/bio.json')
+      .then(function () {
+        return Alfred.fetch('./data/experience.json');
+      })
+      .then(function () {
+        Alfred.register(Bio, '.biography', {dataSource: './data/bio.json'});
+        Alfred.register(Contact, '.contacts', {dataSource: './data/bio.json'});
+        Alfred.register(Face, '.avatar');
+
+        Alfred.register(Experiences, '.xp', {dataSource: './data/experience.json'});
+        Alfred.register(Educations, '.edu', {dataSource: './data/bio.json'});
+        Alfred.register(Skills, '.competencies', {dataSource: './data/bio.json'});
+        Alfred.register(Interests, '.hobbies', {dataSource: './data/bio.json'});
+      })
+  </script>
+</body>
+
+</html>

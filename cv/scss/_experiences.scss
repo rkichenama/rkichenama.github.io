@@ -1,0 +1,31 @@
+.experiences {
+  .experience {
+    + .experience {
+      margin-top: 4px;
+    }
+
+    @extend %decorative;
+    .location {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .title {
+      font-weight: $bold-font-weight;
+    }
+    .company {
+      @extend %italic-light;
+    }
+    .accomplishments {
+      ul {
+        @extend %bare-list;
+      }
+      .accomplishment {
+        font-size: $small-font-size;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@import "timespan";

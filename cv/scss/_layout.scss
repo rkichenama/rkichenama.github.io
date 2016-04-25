@@ -1,0 +1,53 @@
+// row,
+// column {
+//   position: relative;
+//   @extend %flexbox;
+//   @include align-content(stretch);
+//   @include justify-content(center);
+//   @include flex-basis(auto);
+// }
+//
+// row {
+// }
+//
+// column {
+//   @include flex-direction(column);
+//   @include justify-content(flex-start);
+//   @include flex-grow(1);
+//   @include flex-shrink(1);
+// }
+
+main.page {
+  &, & * {
+    position: relative;
+  }
+  row {
+    display: table;
+    width: 100%;
+    column {
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+
+  .heading {
+    column {
+      width: 45%;
+      &.avatar {
+        width: 10%;
+      }
+    }
+  }
+  .content {
+    column {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .page {
+    width: 960px;
+    margin: auto;
+  }
+}

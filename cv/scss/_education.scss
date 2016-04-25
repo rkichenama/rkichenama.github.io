@@ -1,0 +1,11 @@
+.educations {
+  .education {
+    @extend %decorative;
+    .degree {
+      font-weight: $semibold-font-weight;
+    }
+    .school {
+      @extend %italic-light;
+    }
+  }
+}

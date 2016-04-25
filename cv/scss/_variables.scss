@@ -1,0 +1,54 @@
+
+$color-text: #000000;
+$color-light: #666666;
+$color-bg: #ffffff;
+$color-accent: #39c;
+
+$color-link: $color-accent;
+
+$font-family: Arial;
+$normal-font-size: 16px;
+$large-font-size: 24px;
+$small-font-size: 14px;
+$normal-font-weight: 400;
+$semibold-font-weight: 600;
+$bold-font-weight: 700;
+$light-font-weight: 300;
+
+
+%right-align {
+  text-align: right;
+}
+%center-align {
+  text-align: center;
+}
+
+%bare-list {
+  margin: 0 auto;
+  padding: 0;
+  li {
+    list-style: none;
+    & + li {
+      margin-top: 8px;
+    }
+  }
+}
+
+%decorative {
+  padding-left: 40px;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 4;
+    left: 0;
+    width: 32px;
+    height: 24px;
+    background-color: $color-accent;
+  }
+}
+
+%italic-light {
+  font-weight: $light-font-weight;
+  font-style: italic;
+}

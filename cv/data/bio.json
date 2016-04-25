@@ -1,0 +1,51 @@
+{
+  "name": "Richard Kichenama",
+  "statement": "To be filled in by something cool and profound and humble.",
+  "contact": [
+    "mailto:rkichenama@gmail.com",
+    "https://www.linkedin.com/in/rkichenama",
+    "http://www.facebook.com/Richard.Kichenama"
+  ],
+  "location": "New York, NY",
+  "education": [
+    {
+      "span": {
+        "begins": {"y": 1997, "m": 9},
+        "ends":   {"y": 2001, "m": 6}
+      },
+      "school": "Hartwick College",
+      "degrees": [
+        "Bachelor of Science in Computer Technology"
+      ]
+    }
+  ],
+  "skills": [
+    {"name": "JavaScript", "ranking": 9.5},
+    {"name": "React", "ranking": 9},
+    {"name": "ReactiveX (RxJS)", "ranking": 7},
+    {"name": "Node", "ranking": 8},
+    {"name": "jQuery", "ranking": 8.7},
+    {"name": "Sass and Less", "ranking": 9},
+    {"name": "C#", "ranking": 7},
+    {"name": "Java", "ranking": 7},
+    {"name": "PHP", "ranking": 6},
+    {"name": "SQL", "ranking": 8},
+    {"name": ".Net", "ranking": 6},
+    {"name": "MySQL Workstation", "ranking": 4},
+    {"name": "Adobe Acrobat", "ranking": 6},
+    {"name": "Adobe Photoshop CS3/CS4/CS5", "ranking": 7},
+    {"name": "MS Office Suite 2003/2007/2010 (Word, Access, Excel, PowerPoint)", "ranking": 8.5},
+    {"name": "Backbone and Marionette JS", "ranking": 2}
+  ],
+  "achievements": [],
+  "interests": [
+    "puzzles",
+    "physics",
+    "mathematics",
+    "video games",
+    "reading",
+    "science fiction",
+    "history",
+    "sustainability"
+  ]
+}

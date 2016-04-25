@@ -1,0 +1,10 @@
+.heading {
+  .biography,
+  .contacts {
+    @include flex-grow(.5);
+    @include flex-shrink(.5);
+  }
+  @import "bio";
+  @import "contact";
+  @import "face";
+}

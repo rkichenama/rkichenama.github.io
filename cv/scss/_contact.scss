@@ -1,0 +1,23 @@
+.contact {
+  color: $color-accent;
+  ul {
+    @extend %bare-list;
+    min-width: 64px;
+    padding-right: 16px;
+    font-size: $normal-font-size;
+    li {
+      @extend %right-align;
+    }
+  }
+
+  a {
+    &, &:visited, &:active {
+      text-decoration: underline;
+      color: $color-link;
+    }
+
+    &:before {
+      content: attr( title ) ' ';
+    }
+  }
+}

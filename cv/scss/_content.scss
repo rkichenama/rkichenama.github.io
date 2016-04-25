@@ -1,0 +1,16 @@
+.content {
+
+  > column {
+    padding: 0 4px;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+  @import "experiences";
+  @import "education";
+  @import "skills";
+  @import "interests";
+}
