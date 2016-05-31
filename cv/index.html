@@ -34,20 +34,19 @@
   </main>
   <script>
     Alfred.reset();
-    Alfred.fetch('./data/bio.json')
+    Alfred.fetch('./data/experience.json')
       .then(function () {
-        return Alfred.fetch('./data/experience.json');
-      })
+        Alfred.register(Experiences, '.xp', {dataSource: './data/experience.json'});
+      });
+    Alfred.fetch('./data/bio.json?q=')
       .then(function () {
         Alfred.register(Bio, '.biography', {dataSource: './data/bio.json'});
         Alfred.register(Contact, '.contacts', {dataSource: './data/bio.json'});
         Alfred.register(Face, '.avatar');
-
-        Alfred.register(Experiences, '.xp', {dataSource: './data/experience.json'});
         Alfred.register(Educations, '.edu', {dataSource: './data/bio.json'});
         Alfred.register(Skills, '.competencies', {dataSource: './data/bio.json'});
         Alfred.register(Interests, '.hobbies', {dataSource: './data/bio.json'});
-      })
+      });
   </script>
 </body>
 
