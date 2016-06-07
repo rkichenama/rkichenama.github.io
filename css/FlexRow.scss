@@ -1,0 +1,13 @@
+@import "mixins";
+@import "variables";
+
+.flex-row {
+  @extend %flexbox;
+  @include justify-content(center);
+  @include align-items(stretch);
+
+  > * {
+    @include flex-grow(1);
+    @include flex-shrink(1);
+  }
+}

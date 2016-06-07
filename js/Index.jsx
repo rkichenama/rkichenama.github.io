@@ -1,69 +1,62 @@
 const
   React = require('react')
-  ,{Navigation} = require('react-router')
+  ,FlexRow = require('./FlexRow')
+  ,FlexCol = require('./FlexCol')
   ,HackerNews = require('./HackerNews')
-  ,Blank = require('./Blank')
-  ,Figures = require('./Figures')
+  ,DataTree = require('./DataTree')
+  ,Loading = require('./Loading')
 ;
 
 require('../css/deck.scss');
 
-const ClickBait = (props) => (
-  <div className={'click-bait'} {...props}></div>
-);
-
-class Index extends React.Component {
-  constructor () {
-    super();
-    this._handleClick = this._handleClick.bind(this);
-    this.state = {v: 0, w: 0};
-  }
-  componentDidMount () {
-    // console.log();
-    // setTimeout(() => this.context.router.push('intro'),  3000);
-    setInterval(() => this.setState({
-      v: (new Date()).getTime() % 1e7,
-      w: (this.state.w + 11) % 1e7,
-    }), 1250);
-
-  }
-  _handleClick (evt) {
-    if (/click-bait/i.test(evt.target.className)) {
-      [].map.call(this.refs.deck.querySelectorAll('.panel'), (elm) => elm.parentNode)
-        .forEach((bucket) => bucket.className = 'col-md-2')
-      ;
-      evt.target.parentNode.parentNode.className = 'col-md-8 expanded-tile';
-    }
-  }
+class Panel extends React.Component {
   render () {
+    return (<div className={'panel'}>{this.props.children}</div>);
+  }
+}
+
+module.exports = class Index extends React.Component {
+  render () {
+    const comps = [
+      [
+        <HackerNews key={`news00`} />,
+        <HackerNews key={`news01`} />,
+        <HackerNews key={`news10`} />,
+        <HackerNews key={`news11`} />,
+      ],
+      [
+        <HackerNews key={`news3`} />,
+        <HackerNews key={`news4`} />,
+        <HackerNews key={`news5`} />,
+      ],
+    ];
     return (
-      <div ref={'deck'} className={'row deck'} onClick={this._handleClick}>
-        <div className={'col-md-4'}>
-          <div className={'panel'}>
-            <ClickBait />
-            <Figures value={this.state.v} base={16} />
-            <Figures value={this.state.w} base={16} />
-          </div>
-        </div>
-        <div className={'col-md-4'}>
-          <div className={'panel'}>
-            <ClickBait />
-            <HackerNews />
-          </div>
-        </div>
-        <div className={'col-md-4'}><div className={'panel'}><ClickBait /><Blank /></div></div>
-        <div className={'col-md-4'}><div className={'panel'}><ClickBait /><Blank /></div></div>
-        <div className={'col-md-4'}><div className={'panel'}><ClickBait /><Blank /></div></div>
-        <div className={'col-md-4'}><div className={'panel'}><ClickBait /><Blank /></div></div>
-        { this.props.children }
+      <div className={'index'}>
+        <FlexRow>
+          <FlexCol>
+            {
+              comps.map((row, r) => (
+                <FlexRow key={`row${r}`}>
+                  {
+                    row.map((col, c) => (
+                      <FlexCol key={`col${c}`}>
+                        <Panel>{col}</Panel>
+                      </FlexCol>
+                    ))
+                  }
+                </FlexRow>
+              ))
+            }
+          </FlexCol>
+          <FlexCol className={'data'} style={{maxWidth: '300px'}}>
+            <Panel>
+              <DataTree />
+            </Panel>
+          </FlexCol>
+        </FlexRow>
+
+
       </div>
     );
   }
-}
-// Index.contextTypes = {
-//     router: React.PropTypes.object.isRequired
-//   };
-Index.title = 'Home';
-Index.path = '/';
-
-module.exports = Index;
+};

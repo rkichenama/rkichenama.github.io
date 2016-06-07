@@ -17,4 +17,4 @@ const App = () => (
   </Router>
 );
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<Layout><Index /></Layout>, document.querySelector('#app'));

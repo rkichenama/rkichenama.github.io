@@ -1,6 +1,7 @@
 @import "variables";
 
 .hackerNews {
+  text-align: left;
   header {
     text-align: center;
     font-size: $font-size-large;
@@ -19,6 +20,16 @@
       & + li {
         margin-top: .75em;
       }
+    }
+  }
+
+  .item {
+    &-title,
+    &-score {
+      text-align: center;
+    }
+    &-date {
+      text-align: right;
     }
   }
 }
