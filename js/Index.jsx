@@ -18,17 +18,18 @@ class Panel extends React.Component {
 module.exports = class Index extends React.Component {
   render () {
     const comps = [
-      [
-        <HackerNews key={`news00`} />,
-        <HackerNews key={`news01`} />,
-        <HackerNews key={`news10`} />,
-        <HackerNews key={`news11`} />,
-      ],
-      [
-        <HackerNews key={`news3`} />,
-        <HackerNews key={`news4`} />,
-        <HackerNews key={`news5`} />,
-      ],
+      [ <Loading fillColor={'rgba(51,102,153,.4)'}/> ]
+      // [
+      //   <HackerNews key={`news00`} />,
+      //   <HackerNews key={`news01`} />,
+      //   <HackerNews key={`news10`} />,
+      //   <HackerNews key={`news11`} />,
+      // ],
+      // [
+      //   <HackerNews key={`news3`} />,
+      //   <HackerNews key={`news4`} />,
+      //   <HackerNews key={`news5`} />,
+      // ],
     ];
     return (
       <div className={'index'}>
