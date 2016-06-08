@@ -1,0 +1,11 @@
+rework the node script to output family lines; each node is the combination of a father and mother with children from that pair
+there should be no duplicates since a child can only be sired from one set of parents
+  however, a child may be part of many breeding pairs
+
+http://bl.ocks.org/robschmuecker/6afc2ecb05b191359862
+http://bl.ocks.org/GerHobbelt/3683278
+http://bl.ocks.org/mbostock/1138500
+http://blog.pixelingene.com/2011/07/building-a-tree-diagram-in-d3-js/
+
+
+venn diagram http://www.benfrederickson.com/venn-diagrams-with-d3.js/
