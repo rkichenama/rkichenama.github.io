@@ -1,0 +1,20 @@
+@import "variables";
+@import "mixins";
+
+.dataTree {
+  position: relative;
+  min-width: 240px;
+
+  &-people,
+  &-families {
+    &:not(:empty) {
+      position: relative;
+      width: 100%;
+      max-height: (96px * 4);
+      overflow-y: scroll;
+    }
+    &:empty {
+      display: none;
+    }
+  }
+}

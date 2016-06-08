@@ -22,8 +22,9 @@ const LineParser = (Super) => (class extends Super {
           default: return;
           case / NAME /i.test(line):
             this.set('fullname', line.match(/NAME (.+)$/i)[1].replace(/\//g, ''))
-            let t = line.match(/\/(.+)\/$/i);
-            (t && t.length && t[1]) && this.set('surname', t[1]);
+            let t = line.match(/ NAME (.*)\/(.+)\/$/i);
+            (t && t.length && t[1]) && this.set('givenname', t[1].replace(/ +$/, ''));
+            (t && t.length && t[2]) && this.set('surname', t[2]);
             break;
           case / SEX /i.test(line):
             this.set('gender', line.match(/SEX (.+)$/i)[1])
@@ -65,6 +66,7 @@ class Indi extends GenoRecord {
     super();
     this.id = row.match(/0 @(.+)@ INDI/i)[1];
     this.set('surname', '');
+    this.set('givenname', '');
     this.set('fullname', '');
     this.set('gender', '');
     this.set('familyIds', []);

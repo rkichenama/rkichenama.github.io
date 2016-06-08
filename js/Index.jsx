@@ -5,20 +5,23 @@ const
   ,HackerNews = require('./HackerNews')
   ,DataTree = require('./DataTree')
   ,Loading = require('./Loading')
+  ,Panel = require('./Panel')
+  ,DataStore = require('./datastore')
 ;
 
 require('../css/deck.scss');
 
-class Panel extends React.Component {
-  render () {
-    return (<div className={'panel'}>{this.props.children}</div>);
-  }
-}
+window.DataStore = new DataStore(true);
+
+const randNum = () => Math.floor(Math.random() * 255);
+const randClr = () => `rgba(${randNum()},${randNum()},${randNum()},.4)`;
 
 module.exports = class Index extends React.Component {
   render () {
     const comps = [
-      [ <Loading fillColor={'rgba(51,102,153,.4)'}/> ]
+      [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
+      [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
+      [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
       // [
       //   <HackerNews key={`news00`} />,
       //   <HackerNews key={`news01`} />,
@@ -49,11 +52,7 @@ module.exports = class Index extends React.Component {
               ))
             }
           </FlexCol>
-          <FlexCol className={'data'} style={{maxWidth: '300px'}}>
-            <Panel>
-              <DataTree />
-            </Panel>
-          </FlexCol>
+          <DataTree />
         </FlexRow>
 
 
