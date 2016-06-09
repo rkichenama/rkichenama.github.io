@@ -11,181 +11,21 @@ module.exports = class DataTree extends React.Component {
   constructor () {
     super();
     this.state = {
-      indi: {
-        "P4": {
-          "id": "P4",
-          "data": {
-            "surname": "Pitts",
-            "givenname": "Amanda Louise",
-            "fullname": "Amanda Louise Pitts",
-            "gender": "F",
-            "familyIds": [
-              "F24",
-              "F1"
-            ],
-            "children": []
-          }
-        },
-        "P1": {
-          "id": "P1",
-          "data": {
-            "surname": "Kichenama",
-            "givenname": "Richard",
-            "fullname": "Richard Kichenama",
-            "gender": "M",
-            "familyIds": [
-              "F35",
-              "F1"
-            ],
-            "children": []
-          }
-        },
-        "P2": {
-          "id": "P2",
-          "data": {
-            "surname": "Smith",
-            "givenname": "Richard",
-            "fullname": "Richard Smith",
-            "gender": "M",
-            "familyIds": [
-              "F34",
-              "F35"
-            ],
-            "children": []
-          }
-        },
-        "P3": {
-          "id": "P3",
-          "data": {
-            "surname": "Kichenama",
-            "givenname": "Carmen",
-            "fullname": "Carmen Kichenama",
-            "gender": "F",
-            "familyIds": [
-              "F14",
-              "F8",
-              "F35"
-            ],
-            "children": []
-          }
-        },
-        "P5": {
-          "id": "P5",
-          "data": {
-            "surname": "Addams",
-            "givenname": "Leechelle",
-            "fullname": "Leechelle Addams",
-            "gender": "F",
-            "familyIds": [
-              "F2"
-            ],
-            "children": []
-          }
-        },
-        "P6": {
-          "id": "P6",
-          "data": {
-            "surname": "Addams",
-            "givenname": "Michael",
-            "fullname": "Michael Addams",
-            "gender": "M",
-            "familyIds": [
-              "F2"
-            ],
-            "children": []
-          }
-        },
-        "P7": {
-          "id": "P7",
-          "data": {
-            "surname": "Rufen-Blanchette",
-            "givenname": "Camile",
-            "fullname": "Camile Rufen-Blanchette",
-            "gender": "F",
-            "familyIds": [
-              "F367",
-              "F2"
-            ],
-            "children": []
-          }
-        },
-        "P8": {
-          "id": "P8",
-          "data": {
-            "surname": "Angivin",
-            "givenname": "",
-            "fullname": "Angivin",
-            "gender": "M",
-            "familyIds": [
-              "F3"
-            ],
-            "children": []
-          }
-        },
-        "P9": {
-          "id": "P9",
-          "data": {
-            "surname": "Rufen-Blanchette",
-            "givenname": "Susanne",
-            "fullname": "Susanne Rufen-Blanchette",
-            "gender": "F",
-            "familyIds": [
-              "F368",
-              "F3",
-              "F367"
-            ],
-            "children": []
-          }
-        },
-        "P10": {
-          "id": "P10",
-          "data": {
-            "surname": "Angivin",
-            "givenname": "Abigail",
-            "fullname": "Abigail Angivin",
-            "gender": "F",
-            "familyIds": [
-              "F3",
-              "F369"
-            ],
-            "children": []
-          }
-        },
-        "P11": {
-          "id": "P11",
-          "data": {
-            "surname": "Angivin",
-            "givenname": "Marcus",
-            "fullname": "Marcus Angivin",
-            "gender": "M",
-            "familyIds": [
-              "F3"
-            ],
-            "children": []
-          }
-        },
-        "P12": {
-          "id": "P12",
-          "data": {
-            "surname": "Angivin",
-            "givenname": "Maurice",
-            "fullname": "Maurice Angivin",
-            "gender": "M",
-            "familyIds": [
-              "F3",
-              "F5"
-            ],
-            "children": []
-          }
-        },
-      },
-      fam: [],
-    }
+      indi: {},
+      fam: {},
+    };
+    ['_changePerson'].forEach((method) => this[method].bind(this));
   }
   componentDidMount () {
     // subscribe to updates
     DataStore.fetch('/geno/people.json')
       .then((indi) => this.setState({indi}));
+    this.feed = DataStore
+      .filter((update) => /focusedPerson/.test(update.source))
+      .map((update) => update.data)
+      .distinctUntilChanged()
+      // .subscribe((x) => console.log(x) )
+    ;
   }
   render () {
     let peeps = Object.keys(this.state.indi)
@@ -204,7 +44,11 @@ module.exports = class DataTree extends React.Component {
         {
           peeps
             .map((person) => (
-              <div key={person.id}>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</div>
+              <div key={person.id}>
+                <input type="radio" name="indi-uniq" id={`indi-${person.id}`} value={person.id} onChange={this._changePerson} />
+                <label htmlFor={`indi-${person.id}`}>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</label>
+                {/*<section>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</section>*/}
+              </div>
             ))
         }
         </Panel>
@@ -212,5 +56,9 @@ module.exports = class DataTree extends React.Component {
         </Panel>
       </FlexCol>
     );
+  }
+  _changePerson (evt) {
+    let {value} = evt.target;
+    DataStore.put('focusedPerson', value);
   }
 };

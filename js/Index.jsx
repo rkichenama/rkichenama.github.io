@@ -11,7 +11,8 @@ const
 
 require('../css/deck.scss');
 
-window.DataStore = new DataStore(true);
+window.DataStore = new DataStore(false);
+// window.DataStore = new DataStore(true);
 
 const randNum = () => Math.floor(Math.random() * 255);
 const randClr = () => `rgba(${randNum()},${randNum()},${randNum()},.4)`;
