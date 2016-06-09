@@ -2,9 +2,7 @@
 @import "mixins";
 
 @include keyframes(spin) {
-  100% {
-    transform: rotate(360deg);
-  }
+  100% { transform: rotate(360deg); }
 }
 
 .loading-center.loading-center {
@@ -17,13 +15,11 @@
 }
 .loading-box.loading-box {
   position: relative;
-  // background-color: $White;
   @extend %flexbox;
   @include flex-direction(column);
   @include align-items(center);
   @include justify-content(center);
-  // height: 223px;
-  // width: 232px;
+  overflow: hidden;
 }
 .loading {
   width: 100%;

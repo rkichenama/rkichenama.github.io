@@ -7,6 +7,18 @@ const
 
 require('../css/dataTree.scss');
 
+class PersonRow extends React.Component {
+  render () {
+    const {person, changePerson} = this.props;
+    return (
+      <div className={'PersonRow'}>
+        <input type="radio" name="indi-uniq" id={`indi-${person.id}`} value={person.id} onChange={changePerson} />
+        <label htmlFor={`indi-${person.id}`}>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</label>
+      </div>
+    );
+  }
+};
+
 module.exports = class DataTree extends React.Component {
   constructor () {
     super();
@@ -20,7 +32,7 @@ module.exports = class DataTree extends React.Component {
     // subscribe to updates
     DataStore.fetch('/geno/people.json')
       .then((indi) => this.setState({indi}));
-    this.feed = DataStore
+    window.focusedPersonFeed = DataStore
       .filter((update) => /focusedPerson/.test(update.source))
       .map((update) => update.data)
       .distinctUntilChanged()
@@ -42,14 +54,9 @@ module.exports = class DataTree extends React.Component {
       <FlexCol className={'dataTree'} style={{maxWidth: '300px'}}>
         <Panel className={'dataTree-people'}>
         {
-          peeps
-            .map((person) => (
-              <div key={person.id}>
-                <input type="radio" name="indi-uniq" id={`indi-${person.id}`} value={person.id} onChange={this._changePerson} />
-                <label htmlFor={`indi-${person.id}`}>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</label>
-                {/*<section>{`${person.id}: ${person.data.surname}, ${person.data.givenname}`}</section>*/}
-              </div>
-            ))
+          peeps.map((person) => (
+            <PersonRow key={person.id} person={person} changePerson={this._changePerson}/>
+          ))
         }
         </Panel>
         <Panel className={'dataTree-families'}>

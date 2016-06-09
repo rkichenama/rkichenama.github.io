@@ -1,5 +1,16 @@
 @import 'variables';
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  * {
+    position: relative;
+  }
+}
 
 body {
   background-color: $Cloudy;
@@ -35,5 +46,33 @@ main div[class ^= "col"] {
 
   &:after {
     clear: both;
+  }
+}
+
+@page {
+  size: 297mm 210mm;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 297mm;
+  }
+  nav + .wrapper {
+    margin-top: 0;
+  }
+  footer {
+    a[href]:after {
+      content: '';
+    }
+  }
+  .dataTree,
+  footer,
+  .not-for-print {
+    display: none !important;
+  }
+  .panel,
+  .page-break {
+    page-break-before: always;
+    page-break-inside: avoid;
   }
 }

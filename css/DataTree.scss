@@ -2,19 +2,44 @@
 @import "mixins";
 
 .dataTree {
-  position: relative;
+  $selected-ball: 24px;
   min-width: 240px;
 
   &-people,
   &-families {
     &:not(:empty) {
-      position: relative;
       width: 100%;
       max-height: (96px * 4);
       overflow-y: scroll;
     }
     &:empty {
       display: none;
+    }
+
+    input[type="radio"] {
+      display: none;
+
+      &:checked + label[for]:after {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -12px;
+        height: $selected-ball;
+        width: $selected-ball;
+        content: '';
+        background-color: orange;
+        border-radius: 50%;
+      }
+    }
+
+    label[for] {
+      display: block;
+      font-size: $font-size-large;
+      padding-right: $selected-ball;
+    }
+
+    > div:nth-child(2n) {
+      background-color: transparentize(#000, .95);
     }
   }
 }

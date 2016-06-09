@@ -7,6 +7,7 @@ const
   ,Loading = require('./Loading')
   ,Panel = require('./Panel')
   ,DataStore = require('./datastore')
+  ,PersonInfo = require('./PersonInfo')
 ;
 
 require('../css/deck.scss');
@@ -20,8 +21,8 @@ const randClr = () => `rgba(${randNum()},${randNum()},${randNum()},.4)`;
 module.exports = class Index extends React.Component {
   render () {
     const comps = [
+      [ <PersonInfo />, <Loading fillColor={randClr()}/> ],
       [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
-      [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
       [ <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/>, <Loading fillColor={randClr()}/> ],
       // [
       //   <HackerNews key={`news00`} />,
@@ -38,7 +39,7 @@ module.exports = class Index extends React.Component {
     return (
       <div className={'index'}>
         <FlexRow>
-          <FlexCol>
+          <FlexCol className={'printable'}>
             {
               comps.map((row, r) => (
                 <FlexRow key={`row${r}`}>
