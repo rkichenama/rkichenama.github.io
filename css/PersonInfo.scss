@@ -2,36 +2,27 @@
 @import "mixins";
 
 .personInfo {
+  $clr-hi: transparentize(black, .95);
+  $clr-lo: transparent;
+  transition: background-color .75s;
   height: 100%;
+
   &.gender {
     &-m {
-      $clr1: transparent;
-      $clr2: #333;
-      $clr3: #999;
-
-      background-color:$clr1;
-      background-image: linear-gradient(30deg, $clr2 12%, transparent 12.5%, transparent 87%, $clr2 87.5%, $clr2),
-      linear-gradient(150deg, $clr2 12%, transparent 12.5%, transparent 87%, $clr2 87.5%, $clr2),
-      linear-gradient(30deg, $clr2 12%, transparent 12.5%, transparent 87%, $clr2 87.5%, $clr2),
-      linear-gradient(150deg, $clr2 12%, transparent 12.5%, transparent 87%, $clr2 87.5%, $clr2),
-      linear-gradient(60deg, $clr3 25%, transparent 25.5%, transparent 75%, $clr3 75%, $clr3),
-      linear-gradient(60deg, $clr3 25%, transparent 25.5%, transparent 75%, $clr3 75%, $clr3);
-      background-size:80px 140px;
-      background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+      background: repeating-linear-gradient( 45deg, $clr-hi, $clr-hi 10px, $clr-lo 10px, $clr-lo 20px );
+      background-color: transparentize(blue, .8);
     }
     &-f {
-      $clr1: #fb1;
-      $clr2: #B71;
-      $clr3: transparent;
+      background: repeating-linear-gradient( -45deg, $clr-hi, $clr-hi 10px, $clr-lo 10px, $clr-lo 20px );
+      background-color: transparentize(purple, .8);
+    }
+  }
 
-      background:
-      radial-gradient(circle farthest-side at 0% 50%,$clr1 23.5%,$clr3 0)21px 30px,
-      radial-gradient(circle farthest-side at 0% 50%,$clr2 24%,$clr3 0)19px 30px,
-      linear-gradient($clr1 14%,$clr3 0, $clr3 85%,$clr1 0)0 0,
-      linear-gradient(150deg,$clr1 24%,$clr2 0,$clr2 26%,$clr3 0,$clr3 74%,$clr2 0,$clr2 76%,$clr1 0)0 0,
-      linear-gradient(30deg,$clr1 24%,$clr2 0,$clr2 26%,$clr3 0,$clr3 74%,$clr2 0,$clr2 76%,$clr1 0)0 0,
-      linear-gradient(90deg,$clr2 2%,$clr1 0,$clr1 98%,$clr2 0%)0 0 $clr1;
-      background-size:40px 60px;
+  &-row {
+    .aspect {
+      display: inline-block;
+      width: 20%;
+      font-weight: $font-weight-bold;
     }
   }
 }

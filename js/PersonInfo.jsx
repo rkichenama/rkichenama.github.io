@@ -39,9 +39,15 @@ module.exports = class PersonInfo extends React.Component {
     if (id)
       return (
         <article className={`personInfo gender-${gender.toLowerCase()}`}>
-          <section classname={'personInfo-row'}><span className={'aspect'}>Family Line:</span>{surname}</section>
-          <section classname={'personInfo-row'}><span className={'aspect'}>Given Name:</span>{givenname}</section>
-          <section classname={'personInfo-row'}><span className={'aspect'}>Legal Name:</span>{fullname}</section>
+          <section className={'personInfo-row'}>
+            <span className={'aspect'}>Family Line:</span>{surname}
+          </section>
+          <section className={'personInfo-row'}>
+            <span className={'aspect'}>Given Name:</span>{givenname}
+          </section>
+          <section className={'personInfo-row'}>
+            <span className={'aspect'}>Legal Name:</span>{fullname}
+          </section>
         </article>
       );
     else
