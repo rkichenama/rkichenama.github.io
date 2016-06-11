@@ -9,3 +9,103 @@ http://blog.pixelingene.com/2011/07/building-a-tree-diagram-in-d3-js/
 
 
 venn diagram http://www.benfrederickson.com/venn-diagrams-with-d3.js/
+
+
+
+Process a record like
+0 @P74@ INDI
+  1 NAME Jolien /Kichenama/
+    2 SOUR @S-2075448223@
+      3 DATA
+        4 TEXT Online publication - Ancestry.com. U.S. Public Records Index [database on-line]. Provo, UT, USA: The Generations Network, Inc., 2005.Original data - Compiled from various U.S. public records.
+    2 SOUR @S-2075448226@
+      3 NOTE http://trees.ancestry.com/rd?f=sse&db=people&h=521804845&ti=0&indiv=try     http://search.ancestry.com/cgi-bin/sse.dll?db=people&h=521804845&ti=0&indiv=try
+      3 DATA
+        4 TEXT Name:  Jolien KichenamaResidence Date:  Residence Place:  Atlanta, Fulton, Georgia
+    2 SOUR @S-2075448238@
+      3 PAGE Database online.
+      3 DATA
+        4 TEXT Record for Roger Kichenama
+          5 CONT http://trees.ancestry.com/pt/AMTCitationRedir.aspx?tid=0&pid=74
+    2 SOUR @S-2075448245@
+      3 NOTE http://trees.ancestry.com/rd?f=sse&db=nysoundexpet&h=2705821&ti=0&indiv=try&gss=pt
+      3 DATA
+        4 TEXT Birth date:  27 Jan 1923Birth place:  Residence date:  Residence place:  New York, New YorkArrival date:  Arrival place:  New York
+    2 SOUR @S-1616631932@
+      3 PAGE Social Security Death Index
+      3 NOTE http://trees.ancestry.com/rd?f=sse&db=ssdi&h=91949161&ti=0&indiv=try&gss=pt
+      3 NOTE
+      3 DATA
+        4 TEXT death date:  16 March 2012 death place:  Georgia, USA birth date:  27 JAN 1923
+      3 _APID 1,3693::91949161
+  1 BIRT
+    2 DATE 27 JAN 1923
+    2 SOUR @S-2075448231@
+      3 PAGE Database online.
+      3 DATA
+        4 TEXT Record for Julien J Kichenama
+      3 _APID 1,1732::244410175
+    2 SOUR @S-2075448231@
+      3 PAGE Database online.
+      3 DATA
+        4 TEXT Record for Julien Kichenama
+      3 _APID 1,1732::310818641
+    2 SOUR @S-2075448233@
+      3 PAGE Database online.
+      3 DATA
+        4 TEXT Record for Julien Kichenama
+      3 _APID 1,1788::141241713
+    2 SOUR @S-2075448232@
+      3 PAGE Database online.
+      3 DATA
+        4 TEXT Record for Julien Kichenama
+      3 _APID 1,7733::2705821
+    2 SOUR @S-1616631932@
+      3 PAGE Social Security Death Index
+      3 NOTE http://trees.ancestry.com/rd?f=sse&db=ssdi&h=91949161&ti=0&indiv=try&gss=pt
+      3 NOTE
+      3 DATA
+        4 TEXT death date:  16 March 2012 death place:  Georgia, USA birth date:  27 JAN 1923
+      3 _APID 1,3693::91949161
+  1 DEAT
+    2 DATE 16 March 2012
+    2 PLAC Georgia, USA
+    2 SOUR @S-1616631932@
+      3 PAGE Social Security Death Index
+      3 NOTE http://trees.ancestry.com/rd?f=sse&db=ssdi&h=91949161&ti=0&indiv=try&gss=pt
+      3 NOTE
+      3 DATA
+        4 TEXT death date:  16 March 2012 death place:  Georgia, USA birth date:  27 JAN 1923
+      3 _APID 1,3693::91949161
+  1 SEX M
+  1 RESI
+    2 PLAC Atlanta, Fulton, Georgia, USA
+  1 EVEN
+    2 TYPE Arrival
+    2 PLAC New York
+  1 EVEN
+    2 TYPE civil
+    2 DATE 18 JUL 1966
+  1 NAME Jolien /Kichenama/
+  1 NAME Julien J /Kichenama/
+  1 NAME Julien /Kichenama/
+  1 NAME Julien /Kichenama/
+  1 NAME Julien /Kichenama/
+  1 RESI
+    2 PLAC Atlanta, Fulton, Georgia, USA
+  1 RESI
+    2 PLAC New York, NY
+  1 RESI
+    2 DATE 1973
+    2 PLAC New York, NY
+  1 RESI
+    2 PLAC New York
+  1 RESI
+    2 PLAC Atlanta, Fulton, Georgia, USA
+  1 RESI
+    2 PLAC Atlanta, Fulton, Georgia, USA
+  1 RESI
+    2 PLAC New York, New York
+  1 FAMC @F376@
+  1 FAMS @F14@
+  1 FAMS @F15@

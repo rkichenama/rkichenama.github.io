@@ -165,3 +165,108 @@ lineReader.on('close', () => {
   // write to file
   fs.writeFileSync('./tree.json', JSON.stringify(geno.tree, null, 2), 'utf-8');
 })
+
+
+/*
+for each line
+  if starts with 0
+    if contains INDI, create new(line)
+    if contains FAM, create new(line)
+  else
+    add to last active, if active
+*/
+/*
+Entry
+  constructor(line)
+    get type from line (NAME|SEX|BIRT|DEAT|FAM(C|S))
+    if (NAME)
+      set full name
+      set surname or UNKNOWN
+      set given name or UNKNOWN
+    else if (SEX)
+      set gender
+    else if (FAM(C|S))
+
+    else if (BIRT|DEAT)
+    else
+      set to null entry
+  type()
+  add(line)
+*/
+class Entry {
+  constructor (line) {
+    this.values = [];
+    this.sources = 0;
+    this.type = false;
+    switch (true) {
+      default: break;
+      case /^1 name /i.test(line):
+        this.type = 'name';
+        this.value.push(line.match(/NAME (.+)$/i)[1]);
+        break;
+      case /^1 sex /i.test(line):
+        this.type = 'gender';
+        this.value.push(line.match(/SEX (.+)$/i)[1]);
+        break;
+      case /^1 famc /i.test(line):
+        this.type = 'childOf';
+        this.values.push(line.match(/@(.+)@/i)[1]);
+        break;
+      case /^1 fams /i.test(line):
+        this.type = 'spouseOf';
+        this.values.push(line.match(/@(.+)@/i)[1]);
+        break;
+      case /^1 (birt~deat) /i.test(line):
+        this.type = /b/i/test(line[2]) ? 'birth' : 'death';
+        break;
+    }
+  }
+  add (line) {
+    if (/^2 sour /i.test(line)) { // track source count
+      this.sources += 1;
+    } else if (/^2 date /i.test(line)) { // capture date
+      this.values.push(line.match(/date (.{1,2} .{3} .{4})$/i)[1]);
+    }
+  }
+}
+/*
+Record
+  constructor(line)
+    get id from line
+    set default values
+  add(line)
+    if line starts with 1
+      create new entry(line)
+      append to entry list
+    else
+      add to last active, if active
+*/
+class Individual {
+  constructor (line) {
+    this.id = line.match(/0 @(.+)@ INDI/i)[1];
+    this.entries = [];
+  }
+  add (line) {
+    if (/^1 /i.test(line)) {
+      this.entries.push(new Entry(line));
+    } else if (this.entries.length) {
+      this.entries[this.entries.length - 1].add(line);
+    }
+  }
+  /*
+  merge multiples together
+  */
+  consolidate () {
+    let pluck = (entries) => ((type) => entries
+      .filter((entry) => entry.type === type)
+      .map((entry) => [entry.values, entry.sources])
+      .reduce((t, values_sources) => { t.push(values_sources); return t; }, []),
+      .sort((a, b) => a[1] - b[1]));
+    let [
+      name, gender, childOf, spouseOf, birth, death
+    ] = [
+      'name', 'gender', 'childOf', 'spouseOf', 'birth', 'death'
+    ].map(pluck(this.entries));
+    this.data = { name, gender, childOf, spouseOf, birth, death };
+  }
+}
