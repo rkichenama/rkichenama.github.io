@@ -1,26 +1,15 @@
-const path = require('path');
-
 module.exports = {
-  context: __dirname,
-  entry: './js/App.jsx',
+  entry: './src/app/main.ts',
   output: {
-    path: path.join(__dirname, '/assets'),
-    filename: 'bundle.js',
-    publicPath: 'http://localhost:8090/assets'
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
   module: {
     loaders: [
-      { test: /\.js.?$/, loader: 'babel-loader' },
-      { test: /\.(scss|sass)$/, loaders: ['style', 'css', 'sass'] },
-      { test: /\.css$/, loaders: ['style', 'css'] }
+      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.scss$/, loader: 'sass-loader' }
     ]
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
-  },
-  stats: {
-    colors: true,
-    reasons: true,
-    chunks: false
   }
-}
+};
