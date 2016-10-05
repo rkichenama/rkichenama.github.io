@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  * {
+    box-sizing: border-box;
+  }
+
+  &, & body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 16px;
+  }
+}
+
+app-root, main-layout {
+  &:before, &:after {
+    display: table;
+    content: '';
+  }
+  &:after {
+    clear: both;
+  }
+}

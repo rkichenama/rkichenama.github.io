@@ -1,0 +1,15 @@
+@import '../shared/mixins.scss';
+
+:host {
+  position: relative;
+
+  > section {
+    @extend %flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+
+    &:not(:first-child) {
+      margin-top: -4.8%;
+    }
+  }
+}

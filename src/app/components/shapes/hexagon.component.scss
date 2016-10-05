@@ -1,0 +1,25 @@
+@mixin shape-o($def) {
+      -webkit-clip-path: $def;
+  -webkit-shape-outside: $def;
+          shape-outside: $def;
+}
+
+$w : 150px;
+
+:host {
+  @include shape-o(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
+  text-align: justify;
+  position: relative;
+  height: $w * 1.1;
+  width: $w;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  background-color: transparentize(#000, .95);
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image .75s;
+}
