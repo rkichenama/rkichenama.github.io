@@ -1,0 +1,17 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw; }
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eef2f5;
+  background: currentColor;
+  text-shadow: 4px 4px 0px black;
+  font-size: 40vh; }
+
+/*# sourceMappingURL=main.css.map*/
