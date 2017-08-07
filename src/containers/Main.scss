@@ -5,5 +5,23 @@
   color: #eef2f5;
   background: currentColor;
   text-shadow: 4px 4px 0px black;
-  font-size: 40vh;
+  font-size: 48px;
 }
+ #root {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 96px 1fr;
+  grid-template-areas:
+    "....... header  header ......."
+    "sidebar content content footer";
+  .one {
+    grid-area: header;
+  }
+  .two {
+    grid-area: footer;
+  }
+
+ }
