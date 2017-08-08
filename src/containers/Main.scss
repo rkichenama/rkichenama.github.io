@@ -1,27 +1,43 @@
-#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #eef2f5;
-  background: currentColor;
-  text-shadow: 4px 4px 0px black;
-  font-size: 48px;
-}
- #root {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 8px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 96px 1fr;
-  grid-template-areas:
-    "....... header  header ......."
-    "sidebar content content footer";
-  .one {
-    grid-area: header;
-  }
-  .two {
-    grid-area: footer;
-  }
+@import "../styles/variables";
 
- }
+@supports not (display: grid) {
+  #root {
+    > header { flex: 0 0 48px; }
+    > footer { flex: 0 0 32px; }
+
+    > main {
+      flex: 1 1 100%;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: flex-start;
+
+      > * {
+        width: calc((100% / #{12}) - 8px);
+        margin: 0 4px 4px 4px;
+      }
+
+      > * {
+        background: rgba(#336699, .4);
+      }
+    }
+  }
+}
+
+@supports (display: grid) {
+  #root {
+    > header { grid-row: row 1; }
+    > footer { grid-row: row 3; }
+
+    > main {
+      grid-row: row 2;
+      max-width: 1000px;
+      @include grid(12);
+
+      > * {
+        background: rgba(#336699, .4);
+      }
+    }
+  }
+}
