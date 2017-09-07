@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { GridLayout } from '../components';
+import { GridLayout, GitHubProfile } from '../components';
 
 import './Main.scss';
 
 const Main = () => ([
   (
-    <header key={'header'}>1
+    <header key={'header'}>
+      <GitHubProfile username='rkichenama' />
     </header>
   ),
   (
