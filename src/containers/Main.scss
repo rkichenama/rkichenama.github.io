@@ -1,13 +1,24 @@
 @import "../styles/variables";
 
+#root header h1 {
+  margin: 0;
+  line-height: 48px;
+  font-size: 48px;
+}
+
 @supports not (display: grid) {
   #root {
-    > header { flex: 0 0 48px; }
-    > footer { flex: 0 0 32px; }
+    > header { flex: 0 0 auto; }
+    > footer { flex: 0 0 auto; }
 
     > main {
       flex: 1 1 100%;
       max-width: 1000px;
+    }
+
+    > header,
+    > footer,
+    > main {
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;
@@ -17,10 +28,6 @@
         width: calc((100% / #{12}) - 8px);
         margin: 0 4px 4px 4px;
       }
-
-      > * {
-        background: rgba(#336699, .4);
-      }
     }
   }
 }
@@ -29,15 +36,15 @@
   #root {
     > header { grid-row: row 1; }
     > footer { grid-row: row 3; }
-
     > main {
       grid-row: row 2;
       max-width: 1000px;
-      @include grid(12);
+    }
 
-      > * {
-        background: rgba(#336699, .4);
-      }
+    > header,
+    > footer,
+    > main {
+      @include grid(12);
     }
   }
 }

@@ -19,6 +19,11 @@ body {
   background-color: $background;
 }
 
+#root {
+  header, footer {
+    overflow-y: auto;
+  }
+}
 
 /* general */
 .cell {
@@ -83,16 +88,11 @@ body {
 
 @supports (display: grid) {
   #root {
-    padding: 0 4px;
+    padding: 4px;
     @include grid(1);
     grid-template-rows: [row] 48px [row] auto [row] 32px;
     > * {
       grid-column: col 1;
-    }
-
-    .cell {
-      border: 1px solid grey;
-      border-radius: 4px;
     }
 
     .sixth {

@@ -2,67 +2,82 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  compose,
+  compose, withHandlers,
   defaultProps, lifecycle,
   setDisplayName, setPropTypes
 } from 'recompose';
 
 import axios from 'axios';
 
-const Styles = {
-  container: {
-    display: 'inline-flex',
-    alignItems: 'center',
-  },
-  img: {
-    flex: '0 0 auto'
-  },
-  text: {
-    flex: '1 1 auto',
-    paddingLeft: '8px'
-  }
-};
+import './styles.scss';
 
 const noWrap = str => (<span style={{whiteSpace: 'nowrap'}}>{str}</span>);
 
 const GitHubProfile = ({username, name, avatar_url, html_url, location, className = ''}) => (
-  <div style={Styles.container} {...{className}} >
-    <div style={Styles.img}>
-      <a href={html_url}>
-        <img src={avatar_url} width='48' alt='avatar' />
-      </a>
-    </div>
-    <div style={Styles.text}>
-      <div>
-        {noWrap(name)} {noWrap(<a href={html_url}>({username})</a>)}
-      </div>
-      <div>{noWrap(location)}</div>
-    </div>
+  <div className={`github-profile ${className}`} >
+    {(html_url && avatar_url) ? [
+      (<div className='img' key={1}>
+        <a href={html_url}>
+          <img src={avatar_url} width='48' alt='avatar' />
+        </a>
+      </div>),
+      (<div className='text' key={2}>
+        <div>
+          {noWrap(name)} {noWrap(<a href={html_url}>({username})</a>)}
+        </div>
+        <div>{noWrap(location)}</div>
+      </div>)
+    ] : null}
   </div>
 );
 
 const enhance = compose(
+  setDisplayName('Stateless(GitHubProfile)'),
   setPropTypes({
     username: PropTypes.string,
     name: PropTypes.string,
     avatar_url: PropTypes.string,
-    html_url: PropTypes.string
+    html_url: PropTypes.string,
+    location: PropTypes.string,
+    className: PropTypes.string,
   }),
   defaultProps({
-    username: 'rkichenama'
+    username: ''
+  }),
+  withHandlers({
+    fetchUserInfo: ({username}) => async (component) => {
+      try {
+        let {
+          data: {avatar_url, name, html_url, location}
+        } = await axios.get(`https://api.github.com/users/${username}`);
+        component.setState({
+          avatar_url, name, html_url, location
+        });
+      } catch (e) {
+        // failed request
+      }
+    }
   }),
   lifecycle({
     componentDidMount () {
-      axios.get(`https://api.github.com/users/${this.props.username}`)
-        .then(({data, data: {avatar_url, name, html_url, location} }) => {
-          console.warn('/users', data);
-          this.setState({
-            avatar_url, name, html_url, location
-          });
+      this.props.fetchUserInfo(this);
+    },
+    componentWillUpdate ({ username }) {
+      if (username !== this.props.username) {
+        this.setState({
+          avatar_url: false,
+          name: false,
+          html_url: false,
+          location: false,
         });
+      }
+    },
+    componentDidUpdate ({ username }) {
+      if (username !== this.props.username) {
+        this.props.fetchUserInfo(this);
+      }
     }
   }),
-  setDisplayName('Stateless(GitHubProfile)')
 );
 
 export default enhance(GitHubProfile);
