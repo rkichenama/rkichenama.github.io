@@ -85,6 +85,7 @@ module.exports = {
           {
             loader: require.resolve('css-loader'),
             options: {
+              minimize: true,
               importLoaders: 1
             }
           },

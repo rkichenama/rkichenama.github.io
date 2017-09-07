@@ -14,21 +14,6 @@ const classNames = [
   'cell half quarter sixth',
   'cell full',
 ];
-/*
-1 [class='']
-2 .sixth
-3 .quarter
-4 .third
-5 .quarter.sixth
-6 .half
-7 .quarter.third
-8 .half.sixth
-9 .half.quarter
-10 .half.third
-11 .half.quarter.sixth
-12 .full
-
- */
 
 const GridLayout = () => (classNames.map((className, i) => {
   const list = [];
