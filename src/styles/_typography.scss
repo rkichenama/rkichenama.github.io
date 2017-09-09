@@ -1,0 +1,17 @@
+@import "./styles/variables";
+@import url(https://fonts.googleapis.com/css?family=Merriweather::300,300i,400,400i,700,700i);
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i);
+
+body {
+  font-family: var(--font-sans, Arial);
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-normal, 400);
+}
+
+.text- {
+  &center { text-align: center;  }
+  &right  { text-align: right;  }
+}
+.italic     { font-style: italic; }
+.bold     { font-weight: var(--font-weight-bold, 700); }
+.light    { font-weight: var(--font-weight-light, 200); }

@@ -1,0 +1,54 @@
+/*
+   1 [class='']
+   2 .sixth
+   3 .quarter
+   4 .third
+   5 .quarter.sixth
+   6 .half
+   7 .quarter.third
+   8 .half.sixth
+   9 .half.quarter
+  10 .half.third
+  11 .half.quarter.sixth
+  12 .full
+ */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .sixth {
+    width: calc(((100% / #{12}) - 8px) * 2);
+  }
+  .quarter {
+    width: calc(((100% / #{12}) - 8px) * 3);
+
+    &.sixth {
+      width: calc(((100% / #{12}) - 8px) * 5);
+    }
+    &.third {
+      width: calc(((100% / #{12}) - 8px) * 7);
+    }
+  }
+  .third {
+    width: calc(((100% / #{12}) - 8px) * 4);
+  }
+  .half {
+    width: calc(((100% / #{12}) - 8px) * 6);
+    &.sixth {
+      width: calc(((100% / #{12}) - 8px) * 8);
+    }
+    &.quarter {
+      width: calc(((100% / #{12}) - 8px) * 9);
+      &.sixth {
+        width: calc(((100% / #{12}) - 8px) * 11);
+      }
+    }
+    &.third {
+      width: calc(((100% / #{12}) - 8px) * 10);
+    }
+  }
+  .full {
+    width: 100%;
+  }
+}

@@ -14,120 +14,28 @@ body * {
   box-sizing: border-box;
   position: relative;
 }
-html,
-body {
-  background-color: $background;
-}
-
 #root {
   header, footer {
-    overflow-y: auto;
+    overflow-y: hidden;
+  }
+  footer {
+    margin: 0 -4px -4px -4px;
   }
 }
+
+@import "./styles/theme";
+
+/* text styles */
+@import "./styles/typography";
 
 /* general */
 .cell {
   min-height: 1em;
 }
-/*
-   1 [class='']
-   2 .sixth
-   3 .quarter
-   4 .third
-   5 .quarter.sixth
-   6 .half
-   7 .quarter.third
-   8 .half.sixth
-   9 .half.quarter
-  10 .half.third
-  11 .half.quarter.sixth
-  12 .full
- */
 @supports not (display: grid) {
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-
-    .sixth {
-      width: calc(((100% / #{12}) - 8px) * 2);
-    }
-    .quarter {
-      width: calc(((100% / #{12}) - 8px) * 3);
-
-      &.sixth {
-        width: calc(((100% / #{12}) - 8px) * 5);
-      }
-      &.third {
-        width: calc(((100% / #{12}) - 8px) * 7);
-      }
-    }
-    .third {
-      width: calc(((100% / #{12}) - 8px) * 4);
-    }
-    .half {
-      width: calc(((100% / #{12}) - 8px) * 6);
-      &.sixth {
-        width: calc(((100% / #{12}) - 8px) * 8);
-      }
-      &.quarter {
-        width: calc(((100% / #{12}) - 8px) * 9);
-        &.sixth {
-          width: calc(((100% / #{12}) - 8px) * 11);
-        }
-      }
-      &.third {
-        width: calc(((100% / #{12}) - 8px) * 10);
-      }
-    }
-    .full {
-      width: 100%;
-    }
-  }
+  @import "./styles/flexbox";
 }
 
 @supports (display: grid) {
-  #root {
-    padding: 4px;
-    @include grid(1);
-    grid-template-rows: [row] 48px [row] auto [row] 32px;
-    > * {
-      grid-column: col 1;
-    }
-
-    .sixth {
-      grid-column: auto / span 2;
-    }
-    .quarter {
-      grid-column: auto / span 3;
-
-      &.sixth {
-        grid-column: auto / span 5;
-      }
-      &.third {
-        grid-column: auto / span 7;
-      }
-    }
-    .third {
-      grid-column: auto / span 4;
-    }
-    .half {
-      grid-column: auto / span 6;
-      &.sixth {
-        grid-column: auto / span 8;
-      }
-      &.quarter {
-        grid-column: auto / span 9;
-        &.sixth {
-          grid-column: auto / span 11;
-        }
-      }
-      &.third {
-        grid-column: auto / span 10;
-      }
-    }
-    .full {
-      grid-column: auto / span 12;
-    }
-  }
+  @import "./styles/grid";
 }

@@ -1,18 +1,18 @@
 import React from 'react';
 
 const classNames = [
-  'cell',
-  'cell sixth',
-  'cell quarter',
-  'cell third',
-  'cell quarter sixth',
-  'cell half',
-  'cell quarter third',
-  'cell half sixth',
-  'cell half quarter',
-  'cell half third',
-  'cell half quarter sixth',
-  'cell full',
+  'panel cell',
+  'panel cell sixth',
+  'panel cell quarter',
+  'panel cell third',
+  'panel cell quarter sixth',
+  'panel cell half',
+  'panel cell quarter third',
+  'panel cell half sixth',
+  'panel cell half quarter',
+  'panel cell half third',
+  'panel cell half quarter sixth',
+  'panel cell full',
 ];
 
 const GridLayout = () => (classNames.map((className, i) => {

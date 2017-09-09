@@ -25,7 +25,10 @@ const Main = () => ([
     </main>
   ),
   (
-    <footer key={'footer'}>3
+    <footer key={'footer'}>
+      <div className='cell full text-center'>
+        Mostly harmless
+      </div>
     </footer>
   ),
 ]);
