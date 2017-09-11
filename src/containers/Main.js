@@ -1,7 +1,8 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { GridLayout, GitHubProfile, Menu } from '../components';
+import { GridLayout, GitHubProfile, Menu, PageFooter } from '../components';
+import routes from '../routes';
 
 import './Main.scss';
 
@@ -18,19 +19,19 @@ const Main = () => ([
     <main key={'main'}>
       <Menu />
       <Switch>
-        <Route>
-          <GridLayout />
-        </Route>
+        {
+          routes
+            .map(({path, component}) => (<Route {...{path, component}} />))
+        }
       </Switch>
     </main>
   ),
   (
-    <footer key={'footer'}>
-      <div className='cell full text-center'>
-        Mostly harmless
-      </div>
-    </footer>
+    <PageFooter key={'footer'} />
   ),
 ]);
 
-export default () => (<Router><Main /></Router>);
+const Wrapped = () => (<Router><Main /></Router>);
+Wrapped.displayName = 'Router(Main)';
+
+export default Wrapped;

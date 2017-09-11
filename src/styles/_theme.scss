@@ -1,4 +1,9 @@
 @import "./styles/variables";
+
+* {
+  transition: background-color .4s linear;
+}
+
 :root {
   /* colors */
   --clr-background:  $background;
@@ -8,11 +13,13 @@
   --clr-important:   $important;
   --clr-black:       $black;
   --clr-white:       $white;
+  --clr-shadow:      rgba($black, .2);
 
   /* fonts */
   font-size: 16px;
   --font-serif: "Merriweather";
   --font-sans: "Raleway";
+  --font-family: $font-family;
   --font-size-fine: .50em;
   --font-size-small: .75em;
   --font-size-medium: 1em;
@@ -30,8 +37,10 @@ body {
     --clr-highlight: #b80c09;
     --clr-accent: #586f1c;
     --clr-important: #d5a021;
-    --clr-black: #ffffff;
-    --clr-white: #000000;
+    --clr-black: $white;
+    --clr-white: $black;
+    --clr-shadow: rgba($white, .2);
+    --font-family: var(--font-serif);
   }
 
   &.stormy {
@@ -66,6 +75,17 @@ body {
     --clr-important: #3a606e;
   }
 
+  &.dark-2 {
+    --clr-background: #2b2d42;
+    --clr-color: #edf2f4;
+    --clr-highlight: #8d99ae;
+    --clr-accent: #ef233c;
+    --clr-important: #d90429;
+    --clr-black: $white;
+    --clr-white: $black;
+    --clr-shadow: rgba($white, .2);
+  }
+
   background-color: var(--clr-background, $background);
   color: var(--clr-color, $color);
 }
@@ -97,7 +117,8 @@ a {
 
 .panel {
   background-color: var(--clr-white, $white);
-  border: 1px solid var(--clr-black, $black);
+  border: 1px solid  var(--clr-shadow);
   border-radius: 6px;
+  box-shadow: 0 1px 2px var(--clr-shadow);
   padding: 3px;
 }

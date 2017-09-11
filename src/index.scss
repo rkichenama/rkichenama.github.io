@@ -23,6 +23,18 @@ body * {
   }
 }
 
+nav {
+  padding-bottom: 6px;
+
+  a {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: .85em;
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+}
+
 @import "./styles/theme";
 
 /* text styles */
