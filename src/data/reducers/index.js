@@ -1,3 +1,0 @@
-/*
-combine internal reducers and export
-*/
