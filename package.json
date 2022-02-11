@@ -51,7 +51,7 @@
     "jest": "^20.0.4",
     "json-loader": "^0.5.7",
     "moment": "^2.18.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "npm-install-webpack-plugin": "^4.0.4",
     "object-assign": "^4.1.1",
     "promise": "^8.0.1",
